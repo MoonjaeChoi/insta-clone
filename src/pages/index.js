@@ -4,7 +4,7 @@ import Feed from '@/components/Feed'
 
 export default function Home() {
   return (
-    <div className=''>
+    <div className='bg-gray-50'>
       <Head>
         <title>Instagram Clone MJ</title>
         <link rel='icon' href='/favicon.ico' />

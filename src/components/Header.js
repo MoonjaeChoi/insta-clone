@@ -8,7 +8,7 @@ import {
     PaperAirplaneIcon,
     Bars3Icon as MenuIcon,
     HomeIcon
-} from '@heroicons/react/24/solid'
+} from '@heroicons/react/24/outline'
 
 import { heroImg } from '@/assets'
 
