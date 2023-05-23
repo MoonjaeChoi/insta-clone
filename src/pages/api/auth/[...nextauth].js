@@ -16,7 +16,22 @@ export const authOptions = {
   ],
 
   pages: {
-    signIn: 'auth/SignIn'
+    signIn: '/auth/SignIn',
+  },
+
+  callbacks: {
+    async session ({ session, token, user }) {
+      session.user.username = session.user.name
+        .split(" ")
+        .join("")
+        .toLocaleLowerCase()
+
+        // Moonjae Choi
+        // moonjaechoi
+
+        session.user.uid = token.sub
+        return session
+    }
   }
 
   // theme: {

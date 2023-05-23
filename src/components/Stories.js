@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker' // npm install --save-dev @faker-js/faker
 import { useEffect, useState } from 'react'
 import Story from './Story';
+import { useSession } from "next-auth/react"
 
 export function createRandomUser() {
     return {
@@ -20,6 +21,7 @@ export function createRandomUser() {
 
 function Stories() {
     const [suggestions, setSuggestions] = useState([])
+    const { data: session } = useSession()
 
     useEffect(() => {
         // const users = [...Array(1)].map((_, i) => ({
@@ -36,6 +38,13 @@ function Stories() {
 
   return (
     <div className='flex space-x-2 p-6 bg-white mt-8 border-gray-200 border rounded-sm overflow-x-scroll scrollbar-thin scrollbar-thumb-black'>
+        {
+          session && (
+            <Story img={session.user.image}
+                   username = {session.user.username} />
+          )
+        }
+
         {USERS?.map((profile) => (
             <Story
                 key={profile.id}
@@ -44,13 +53,6 @@ function Stories() {
                  />
         ))
         }
-        {/* Story */}
-        {/* Story */}
-        {/* Story */}
-        {/* Story */}
-        {/* Story */}
-        {/* Story */}
-        {/* Story */}
     </div>
   )
 }
