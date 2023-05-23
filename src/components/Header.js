@@ -11,7 +11,8 @@ import {
 } from '@heroicons/react/24/outline'
 
 import { heroImg } from '@/assets'
-import { useSession } from 'next-auth/react'
+import { signIn, signOut, useSession } from 'next-auth/react'
+import SignIn from '@/pages/auth/SignIn'
 
 
 function Header() {
@@ -56,16 +57,29 @@ function Header() {
             <div className='flex items-center justify-end space-x-4'>
                 <HomeIcon className='navBtn' />
                 <MenuIcon className='h-6 md:hidden cursor-pointer' />
-                <div className='relative navBtn'>
-                    <PaperAirplaneIcon className='navBtn rotate-0' />
-                    <div className='absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white'>3</div>
-                </div>
                 
-                <PlusCircleIcon className='navBtn' />
-                <UserGroupIcon className='navBtn' />
-                <HeartIcon className='navBtn' />
+                { session ? (
+                <>
+                    <div className='relative navBtn'>
+                        <PaperAirplaneIcon className='navBtn rotate-0' />
+                        <div className='absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white'>3</div>
+                    </div>
+                        
+                    <PlusCircleIcon className='navBtn' />
+                    <UserGroupIcon className='navBtn' />
+                    <HeartIcon className='navBtn' />
 
-                <Image src={session.user?.image} alt='profile pic' className='w-5 rounded-full cursor-pointer'/>
+                    <img
+                        onClick={signOut} 
+                        src={session.user.image} 
+                        alt='profile pic'
+                        className='w-5 rounded-full cursor-pointer'
+                    />
+                </>
+                ):(
+                    <button onClick={signIn}>Sign In</button>
+                )}
+                
             </div>
         </div>
     </div>
