@@ -2,7 +2,6 @@ import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 
 // https://console.firebase.google.com/?pli=1
-
 export const authOptions = {
   // Configure one or more authentication providers
   providers: [
