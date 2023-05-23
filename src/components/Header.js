@@ -11,8 +11,11 @@ import {
 } from '@heroicons/react/24/outline'
 
 import { heroImg } from '@/assets'
+import { useSession } from 'next-auth/react'
+
 
 function Header() {
+    const { data: session } = useSession()
   return (
     <div className='shadow-sm border-b bg-white sticky top-0 z-50'>
         <div className='flex justify-between bg-white max-w-6xl mx-5 lg:mx-auto'>
@@ -62,7 +65,7 @@ function Header() {
                 <UserGroupIcon className='navBtn' />
                 <HeartIcon className='navBtn' />
 
-                <Image src={heroImg} alt='profile pic' className='w-5 rounded-full cursor-pointer'/>
+                <Image src={session.user?.image} alt='profile pic' className='w-5 rounded-full cursor-pointer'/>
             </div>
         </div>
     </div>
