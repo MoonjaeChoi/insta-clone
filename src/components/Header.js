@@ -11,7 +11,6 @@ import { HomeIcon } from '@heroicons/react/24/solid'
 //import { heroImg } from '@/assets'
 import { signIn, signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import SignIn from '@/pages/auth/SignIn'
 import { useRecoilState } from 'recoil'
 import { modalState } from '@/atoms/modalAtom'
 
@@ -22,7 +21,9 @@ function Header() {
     
     const router = useRouter()
 
-    console.log('.env' + process.env.GOOGLE_CLIENT_ID)
+    console.log('.env 1 : ' + process.env.GOOGLE_CLIENT_ID)
+    console.log('.env 2 : ' + process.env.NEXT_PUBLIC_API_MAIN_KEY)
+    console.log('.env 3 : ' + process.env.NEXTAUTH_URL)
 
   return (
     <div className='shadow-sm border-b bg-white sticky top-0 z-50'>

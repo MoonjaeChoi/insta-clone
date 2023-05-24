@@ -1,4 +1,4 @@
-import { coloection, onSnapshot, orderBy, query } from '@firebase/firestore'
+import { collection, onSnapshot, orderBy, query } from '@firebase/firestore'
 import { useEffect, useState } from 'react'
 import { db } from '../../firebase'
 import Post from './Post'
@@ -9,7 +9,7 @@ function Posts() {
     useEffect(
         () =>
             onSnapshot(
-                query(coloection(db, 'posts'), orderBy('timestamp','desc')), 
+                query(collection(db, 'posts'), orderBy('timestamp','desc')), 
                 (snapshot) => {
                     setPosts(snapshot.docs)
                 }

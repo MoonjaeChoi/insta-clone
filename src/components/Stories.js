@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react"
 
 export function createRandomUser() {
     return {
-      userId: faker.number.bigInt(),
+      userId: faker.number.int(),
       username: faker.internet.userName(),
       email: faker.internet.email(),
       avatar: faker.image.avatar(),
@@ -40,18 +40,24 @@ function Stories() {
     <div className='flex space-x-2 p-6 bg-white mt-8 border-gray-200 border rounded-sm overflow-x-scroll scrollbar-thin scrollbar-thumb-black'>
         {
           session && (
-            <Story img={session.user.image}
-                   username = {session.user.username} />
+            <Story 
+              key={session.user.userId}
+              img={session.user.image}
+              username={session.user.username} />
           )
         }
 
-        {USERS?.map((profile) => (
+        {USERS?.map((profile) => {(
             <Story
-                key={profile.id}
-                img={profile.avatar}
-                username={profile.username}
-                 />
-        ))
+              key={profile.userId}
+              img={profile.avatar}
+              username={profile.username}
+            />
+        )
+        console.log(profile.userId)
+        console.log(profile.avatar)
+        console.log(profile.username)
+      })
         }
     </div>
   )
