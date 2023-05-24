@@ -1,7 +1,9 @@
 import { getProviders, signIn as SignIntoProvider } from 'next-auth/react'
 import Header from '@/components/Header'
+import { getServerSession } from "next-auth/next"
+import { authOptions } from './api/auth/[...nextauth]'
 
-function SignIn({providers}) {
+function signIn({providers}) {
   return (
     <>
     <Header />
@@ -27,16 +29,22 @@ function SignIn({providers}) {
   )
 }
 
-// Server side Rendering
-export async function getServerSideProps() {
-    const providers = getProviders()
+// // Server side Rendering
+// export async function getServerSideProps() {
+//     const providers = getProviders()
+//     return {
+//         props: {
+//             providers
+//         }
+//     }
+// }
 
-    return {
-        props: {
-            providers
-        }
+export async function getServerSideProps({ req, res }) {
+  return {
+    props: {
+      session: await getServerSession(req, res, authOptions)
     }
-
+  }
 }
 
-export default SignIn
+export default signIn

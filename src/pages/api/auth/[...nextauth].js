@@ -1,9 +1,6 @@
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
-
 // https://console.firebase.google.com/?pli=1
-
-
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -16,7 +13,7 @@ export const authOptions = {
   ],
 
   pages: {
-    signIn: '/auth/SignIn',
+    signIn: '/auth/signIn',
   },
 
   callbacks: {
@@ -32,7 +29,7 @@ export const authOptions = {
         session.user.uid = token.sub
         return session
     }
-  }
+  },
 
   // theme: {
   //   logo: 'https://links.papareact.com/sq0',
@@ -40,4 +37,5 @@ export const authOptions = {
   //   colorScheme: 'auto',
   // },
 }
+
 export default NextAuth(authOptions)
